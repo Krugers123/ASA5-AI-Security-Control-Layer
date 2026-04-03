@@ -47,6 +47,22 @@ Public architecture overview:
 - [ASA 5 Public Console Overview](docs/ASA5_PUBLIC_CONSOLE_OVERVIEW.md)
 - [ASA 5 Public Scope](docs/ASA5_PUBLIC_SCOPE.md)
 
+## Reading Guide
+
+This repository currently includes a small set of public-safe architecture documents:
+
+- [ASA 5 Public Architecture](docs/ASA5_PUBLIC_ARCHITECTURE.md)
+  - explains the high-level structure of ASA 5 as an external AI Security Control Layer
+
+- [ASA 5 Public Protocol Overview](docs/ASA5_PUBLIC_PROTOCOL_OVERVIEW.md)
+  - explains the public protocol families that shape trajectory security interpretation
+
+- [ASA 5 Public Console Overview](docs/ASA5_PUBLIC_CONSOLE_OVERVIEW.md)
+  - explains the intended operator/security console surface of ASA 5
+
+- [ASA 5 Public Scope](docs/ASA5_PUBLIC_SCOPE.md)
+  - explains what this public repository is meant to show and what remains outside the public layer
+
 ## Preview
 
 ### Security Architecture
