@@ -45,6 +45,7 @@ ASA 5 acts as an external runtime security layer that:
 - detects drift-related instability in evolving trajectories
 - classifies pre-incident risk signals
 - escalates relevant warnings to operator and security layers
+- supports autonomous response pathways where operator approval is too slow for safe execution
 - supports policy, audit, and downstream safety integration
 
 In practical terms, ASA 5 shifts the problem from:
@@ -90,6 +91,37 @@ It means designing a stronger external sentinel position:
 - still separate from the model's internal self-description
 
 This is one of the reasons ASA 5 should be read not only as a dashboard concept, but as a broader runtime-security architecture direction.
+
+## Autonomous Response Context
+
+In some environments, human approval cannot be the primary response loop.
+
+This is especially true for systems such as:
+
+- autonomous vehicles
+- embodied agents
+- robotics platforms
+- runtime-critical autonomous environments
+
+In those cases, ASA 5 should not be understood only as an operator escalation layer.
+It should also be understood as a layer that can support:
+
+- autonomous safety reactions
+- local response boundaries
+- runtime self-protection paths
+- post-event audit and operator review
+
+That changes the human role.
+
+The operator does not always act as the immediate approver.
+In high-autonomy contexts, the operator may instead serve as:
+
+- reviewer
+- auditor
+- policy owner
+- post-event interpreter
+
+This keeps the security layer external in judgment while allowing the system to react fast enough when direct human timing is no longer realistic.
 
 ## From ASA 4 To ASA 5
 
@@ -142,6 +174,8 @@ The operator layer should communicate:
 This is not only about observing a system.
 It is about giving operators and security owners actionable visibility into trajectory integrity before instability becomes systemic.
 
+In high-autonomy environments, that same layer may also support autonomous response logic, with the operator shifted toward review, audit, and governance rather than direct moment-to-moment approval.
+
 ## Preview
 
 ### Security Architecture
@@ -177,6 +211,9 @@ This repository currently includes a public-safe set of architecture documents:
 
 - [ASA 5 Hardware-Adjacent Direction](docs/ASA5_HARDWARE_ADJACENT_DIRECTION.md)
   - how ASA 5 may evolve closer to runtime and hardware-adjacent environments while remaining external to the model
+
+- [ASA 5 Autonomous Response Mode](docs/ASA5_AUTONOMOUS_RESPONSE_MODE.md)
+  - how ASA 5 fits environments where immediate system reaction matters more than manual operator approval
 
 ## Public Scope
 

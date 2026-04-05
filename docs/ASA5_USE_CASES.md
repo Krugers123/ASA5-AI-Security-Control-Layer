@@ -60,6 +60,24 @@ ASA 5 is relevant here because it frames trajectory integrity as a separate laye
 
 In the longer direction, this can mean a layer that remains external to the model while living closer to runtime telemetry and execution boundaries.
 
+## 6. Autonomous Vehicles and Embodied Systems
+
+In systems such as autonomous vehicles or embodied agents, a human operator may not be able to approve every critical response in real time.
+
+ASA 5 is relevant here because it can support:
+
+- trajectory-level risk interpretation
+- bounded autonomous response pathways
+- fast runtime safety decisions
+- post-event operator review and audit
+
+In this context, the operator is still essential, but more as:
+
+- policy authority
+- reviewer
+- auditor
+- governance layer
+
 ## Public-Safe Summary
 
 ASA 5 matters wherever systems remain locally coherent while gradually becoming globally unsafe to ignore.

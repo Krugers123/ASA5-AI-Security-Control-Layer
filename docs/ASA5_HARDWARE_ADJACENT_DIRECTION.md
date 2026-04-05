@@ -43,6 +43,8 @@ It is about designing a more precise boundary between:
 - runtime telemetry
 - external security interpretation
 
+In some high-autonomy environments, that boundary may need to support not only operator escalation, but bounded autonomous reaction paths close to the runtime itself.
+
 ## Public-Safe Framing
 
 The public-safe way to describe this direction is:
@@ -63,6 +65,13 @@ The deeper logic of ASA has always been asymmetry:
 - the model produces
 - the external layer interprets
 - the operator or security environment decides
+
+In hardware-adjacent or runtime-proximal settings, that decision environment may include:
+
+- local safety logic
+- bounded automatic response
+- policy-constrained runtime reaction
+- later human review and audit
 
 Moving closer to runtime does not remove that asymmetry.
 It can strengthen it, if the external layer becomes better positioned to read trajectory conditions before they become expensive to ignore.
