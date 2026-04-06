@@ -184,6 +184,30 @@ Initial public-safe architecture diagram for ASA 5 as an external AI Security Co
 
 ![ASA 5 Security Architecture](docs/asa5_security_architecture_v1.png)
 
+### Console Preview
+
+Current operator-facing preview of the ASA 5 Security Console.
+
+#### Security Overview
+
+![ASA 5 Security Overview](docs/preview_overview_1.png)
+
+#### Runtime Detail
+
+![ASA 5 Runtime Detail](docs/preview_overview_2.png)
+
+#### Incident Center
+
+![ASA 5 Incident Center](docs/preview_overview_3.png)
+
+#### Escalation Queue
+
+![ASA 5 Escalation Queue](docs/preview_overview_4.png)
+
+#### Audit Review
+
+![ASA 5 Audit Review](docs/preview_overview_5.png)
+
 ## Reading Guide
 
 This repository currently includes a public-safe set of architecture documents:
