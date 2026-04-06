@@ -188,10 +188,6 @@ Initial public-safe architecture diagram for ASA 5 as an external AI Security Co
 
 Current operator-facing preview of the ASA 5 Security Console.
 
-#### Security Overview
-
-![ASA 5 Security Overview](docs/preview_overview_1.png)
-
 #### Runtime Detail
 
 ![ASA 5 Runtime Detail](docs/preview_overview_2.png)
