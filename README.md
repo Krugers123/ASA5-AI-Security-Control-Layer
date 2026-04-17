@@ -192,7 +192,7 @@ Current operator-facing preview of the ASA 5 Security Console.
 
 A short overview video of the ASA 5 runtime security surface.
 
-[![ASA 5 Runtime Security Overview](docs/preview_overview_2.png)](https://x.com/Symbioza2025/status/2041616286484947236?s=20)
+[Watch the ASA 5 walkthrough on X](https://x.com/Symbioza2025/status/2041616286484947236?s=20)
 
 Archive copy:
 
