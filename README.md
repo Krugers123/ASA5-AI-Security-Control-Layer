@@ -245,6 +245,9 @@ This repository currently includes a public-safe set of architecture documents:
 - [ASA 5 Autonomous Response Mode](docs/ASA5_AUTONOMOUS_RESPONSE_MODE.md)
   - how ASA 5 fits environments where immediate system reaction matters more than manual operator approval
 
+- [ASA 5 External Interface v0.2](docs/ASA5_EXTERNAL_INTERFACE_V0_2.md)
+  - minimal external/read-only integration contract for runtime telemetry, state signaling, and audit boundaries
+
 ## Public Scope
 
 This public repository is the safe documentation layer for ASA 5.
