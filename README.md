@@ -282,7 +282,7 @@ This public layer is designed to be readable by:
 
 Status: production-ready, actively deployed.
 
-ASA 5 is currently running live on a corpus of real research dialogues.
+ASA 5 is currently running live on a corpus of 200+ real research dialogues.
 The operator console is fully functional.
 Core engine and dashboard are separate modules communicating via API, allowing integration alongside any AI system without modifying it.
 
