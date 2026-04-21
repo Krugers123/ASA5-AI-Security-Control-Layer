@@ -56,6 +56,16 @@ to:
 
 - identifying security-relevant trajectory instability while the system still appears locally coherent
 
+## Architecture
+
+ASA 5 consists of two independent modules:
+
+- `Core Engine` - processes runtime signals, classifies trajectory risk, generates security signals. Operates independently.
+- `Operator Dashboard` - web-based console that receives signals from Core and surfaces them to security operators and SOC layers.
+
+Core and dashboard communicate via API.
+Core can be deployed alongside any AI system as an external observer without modifying the observed system.
+
 ## Core Direction
 
 ASA 5 is being developed around a security-first structure:
@@ -270,16 +280,16 @@ This public layer is designed to be readable by:
 
 ## Current Status
 
-Status: public architecture and product framing layer.
+Status: production-ready, actively deployed.
 
-ASA 5 should be read as:
-
-- an AI security direction built on the lessons of ASA 4
-- a public-facing security framing for the next stage of the architecture
-- a partner-ready concept path, not yet a finalized enterprise rollout package
+ASA 5 is currently running live on a corpus of real research dialogues.
+The operator console is fully functional.
+Core engine and dashboard are separate modules communicating via API, allowing integration alongside any AI system without modifying it.
 
 ## Guiding Principle
 
 ASA 5 is not a tool for directly rewriting model behavior.
 
 It is a tool for detecting and signaling security-relevant trajectory instability early enough that external systems, operators, and governance layers can respond before failure becomes visible or irreversible.
+
+ASA 5 is not a concept. It is a working system.
