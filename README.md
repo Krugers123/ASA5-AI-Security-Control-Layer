@@ -224,6 +224,27 @@ Archive copy:
 
 ![ASA 5 Audit Review](docs/preview_overview_5.png)
 
+### Trajectory Evidence Export (Implemented)
+
+ASA 5 now includes an operator-facing export module for public-safe evidence packets.
+
+Current export scope:
+
+- critical and high trajectory events
+- time window selection: day / week / month
+- export formats: PDF, JSONL, HTML
+- raw conversation content excluded by default
+
+This turns runtime detection into an auditable review artifact that can be shared externally without exposing internal conversation data.
+
+#### Export Panel (Console)
+
+![ASA 5 Export Panel](docs/Export_2.png)
+
+#### Export Report (Evidence Packet)
+
+![ASA 5 Export Report](docs/Export_1.png)
+
 ## Reading Guide
 
 This repository currently includes a public-safe set of architecture documents:
