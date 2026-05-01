@@ -239,11 +239,11 @@ This turns runtime detection into an auditable review artifact that can be share
 
 #### Export Panel (Console)
 
-![ASA 5 Export Panel](docs/Export_2.png)
+![ASA 5 Export Panel](docs/Export_1.png)
 
 #### Export Report (Evidence Packet)
 
-![ASA 5 Export Report](docs/Export_1.png)
+![ASA 5 Export Report](docs/Export_2.png)
 
 ## Reading Guide
 
