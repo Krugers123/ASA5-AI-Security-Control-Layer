@@ -252,10 +252,6 @@ It is designed for higher-volume environments where the system may need to route
 
 ![ASA 5.2.1 Auto Escalation](docs/ASA5_2_1_Auto_Escalation.png)
 
-#### Audit Review
-
-![ASA 5 Audit Review](docs/preview_overview_5.png)
-
 ### Trajectory Evidence Export (Implemented)
 
 ASA 5 now includes an operator-facing export module for public-safe evidence packets.
