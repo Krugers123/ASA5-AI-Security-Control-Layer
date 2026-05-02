@@ -2,7 +2,10 @@
 
 ## Purpose
 
-ASA 5 is intended to expose an operator-facing security console rather than a research observatory.
+ASA 5.2.1 exposes an operator-facing security console under the public name `ASA 5 Security Enterprise`.
+
+It is not a research observatory interface.
+It is an enterprise security surface for runtime integrity, incident response, automatic incident assignment, and pre-incident security signaling.
 
 The console should help humans understand:
 
@@ -15,7 +18,7 @@ The console should help humans understand:
 
 ### Security Overview
 
-Live view of current runtime security state.
+Live view of current runtime security state, including critical and high-risk response state, pending operator review, human-processed incidents, and system-processed incidents.
 
 ### Runtime Detail
 
@@ -27,7 +30,13 @@ Operational view of pre-incidents and active incidents.
 
 ### Escalation Queue
 
-View of security-relevant signals routed toward downstream control surfaces.
+View of pending and acknowledged downstream security actions, including human-owned escalation workflow.
+
+### Auto Escalation
+
+View of critical incidents automatically dispatched by ASA toward downstream security response.
+
+This view supports sorting, filtering, search, downstream target visibility, and operator review after automatic routing.
 
 ### Audit Review
 
@@ -41,3 +50,6 @@ The ASA 5 console should feel:
 - security-aware
 - readable under pressure
 - focused on action and integrity, not on decorative analytics
+
+The operator remains the security owner.
+Automatic assignment and auto-dispatch are bounded response pathways for high-volume or latency-sensitive contexts, not a replacement for audit, governance, or human authority.

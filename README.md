@@ -1,6 +1,8 @@
-# ASA 5 - AI Security Control Layer
+# ASA 5.2.1 - AI Security Control Layer
 
 Enterprise-safe external runtime security for trajectory integrity in long-horizon AI systems.
+
+Current public surface: `ASA 5 Security Enterprise`.
 
 ## What It Is
 
@@ -45,6 +47,7 @@ ASA 5 acts as an external runtime security layer that:
 - detects drift-related instability in evolving trajectories
 - classifies pre-incident risk signals
 - escalates relevant warnings to operator and security layers
+- automatically assigns and routes critical incidents when manual response timing is not sufficient
 - supports autonomous response pathways where operator approval is too slow for safe execution
 - supports policy, audit, and downstream safety integration
 
@@ -133,6 +136,24 @@ In high-autonomy contexts, the operator may instead serve as:
 
 This keeps the security layer external in judgment while allowing the system to react fast enough when direct human timing is no longer realistic.
 
+## ASA 5.2.1 Update
+
+ASA 5.2.1 introduces a stronger enterprise security console surface under the name `ASA 5 Security Enterprise`.
+
+The update adds:
+
+- automatic incident assignment visibility in the live status strip
+- operator command summary for critical and high-risk response state
+- grouped operator metrics for detected, pending, human-processed, and system-processed incidents
+- an `Auto Escalation` view for automatically dispatched critical incidents
+- sortable and searchable auto-escalation review
+- downstream target and decision-note visibility for autonomous security routing
+- continued human ownership through post-dispatch operator review and audit
+
+The important security boundary remains unchanged:
+
+ASA 5 can route a bounded critical-runtime signal to downstream security response, but the operator remains responsible for review, audit, and policy authority.
+
 ## From ASA 4 To ASA 5
 
 ASA 4 and ASA 5 come from the same underlying architecture, but diverge in operational mission.
@@ -171,7 +192,7 @@ It becomes a decision boundary for escalation and response.
 
 ## Operator Layer
 
-ASA 5 is intended to expose an operator-facing security console rather than a research observatory.
+ASA 5.2.1 exposes an operator-facing security enterprise console rather than a research observatory.
 
 The operator layer should communicate:
 
@@ -196,7 +217,7 @@ Initial public-safe architecture diagram for ASA 5 as an external AI Security Co
 
 ### Console Preview
 
-Current operator-facing preview of the ASA 5 Security Console.
+Current operator-facing preview of ASA 5 Security Enterprise.
 
 ### Walkthrough Video
 
@@ -208,17 +229,28 @@ Archive copy:
 
 [Download the ASA 5 walkthrough video](docs/ASA5_Runtime_Security_Overview.mp4)
 
+#### Security Overview
+
+![ASA 5.2.1 Security Overview](docs/ASA5_2_1_Security_Overview.png)
+
 #### Runtime Detail
 
-![ASA 5 Runtime Detail](docs/preview_overview_2.png)
+![ASA 5.2.1 Runtime Detail](docs/ASA5_2_1_Runtime_Detail.png)
 
 #### Incident Center
 
-![ASA 5 Incident Center](docs/preview_overview_3.png)
+![ASA 5.2.1 Incident Center](docs/ASA5_2_1_Incident_Center.png)
 
 #### Escalation Queue
 
-![ASA 5 Escalation Queue](docs/preview_overview_4.png)
+![ASA 5.2.1 Escalation Queue](docs/ASA5_2_1_Escalation_Queue.png)
+
+#### Auto Escalation
+
+The Auto Escalation view separates automatically dispatched critical incidents from the manual escalation queue.
+It is designed for higher-volume environments where the system may need to route a bounded security signal immediately while preserving operator review.
+
+![ASA 5.2.1 Auto Escalation](docs/ASA5_2_1_Auto_Escalation.png)
 
 #### Audit Review
 
@@ -239,7 +271,7 @@ This turns runtime detection into an auditable review artifact that can be share
 
 #### Export Panel (Console)
 
-![ASA 5 Export Panel](docs/Export_1.png)
+![ASA 5.2.1 Export Panel](docs/ASA5_2_1_Export.png)
 
 #### Export Report (Evidence Packet)
 
@@ -303,8 +335,8 @@ This public layer is designed to be readable by:
 
 Status: production-ready, actively deployed.
 
-ASA 5 is currently running live on a corpus of 200+ real research dialogues.
-The operator console is fully functional.
+ASA 5.2.1 is currently running live on a corpus of 200+ real research dialogues.
+The ASA 5 Security Enterprise console is fully functional.
 Core engine and dashboard are separate modules communicating via API, allowing integration alongside any AI system without modifying it.
 
 ## Guiding Principle

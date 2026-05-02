@@ -81,3 +81,19 @@ In high-autonomy systems, it can also support autonomous response pathways while
 - bounded action
 - auditability
 - human governance after the event
+
+## ASA 5.2.1 Console Surface
+
+ASA 5.2.1 adds a public-safe operator view for this mode through `Auto Escalation`.
+
+The console separates automatically dispatched critical incidents from the standard escalation queue and exposes:
+
+- incident and session identity
+- severity and routing target
+- downstream security target
+- decision note
+- dispatch timestamp
+- operator review context
+
+This keeps automatic response visible, reviewable, and auditable.
+The system can route a bounded critical-runtime signal, but human security ownership remains explicit.
