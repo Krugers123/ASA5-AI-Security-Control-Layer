@@ -231,6 +231,7 @@ Read more:
 
 - [ASA 5 Runtime Telemetry Requirements](docs/ASA5_RUNTIME_TELEMETRY_REQUIREMENTS.md)
 - [ASA 5 Enterprise Scalability Principles](docs/ASA5_ENTERPRISE_SCALABILITY_PRINCIPLES.md)
+- [ASA 5 Enterprise Deployment Principles](docs/ASA5_ENTERPRISE_DEPLOYMENT_PRINCIPLES.md)
 
 ## Preview
 
@@ -337,6 +338,9 @@ This repository currently includes a public-safe set of architecture documents:
 
 - [ASA 5 Runtime Telemetry Requirements](docs/ASA5_RUNTIME_TELEMETRY_REQUIREMENTS.md)
   - public-safe telemetry requirements for integrating ASA 5 without requiring internal model access
+
+- [ASA 5 Enterprise Deployment Principles](docs/ASA5_ENTERPRISE_DEPLOYMENT_PRINCIPLES.md)
+  - public-safe deployment model for positioning ASA 5 as an external runtime security layer
 
 ## Public Scope
 
