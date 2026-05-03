@@ -248,6 +248,19 @@ Read more:
 - [ASA 5 Runtime Telemetry Requirements](docs/ASA5_RUNTIME_TELEMETRY_REQUIREMENTS.md)
 - [ASA 5 Enterprise Scalability Principles](docs/ASA5_ENTERPRISE_SCALABILITY_PRINCIPLES.md)
 - [ASA 5 Enterprise Deployment Principles](docs/ASA5_ENTERPRISE_DEPLOYMENT_PRINCIPLES.md)
+- [ASA 5 Enterprise Control Mapping](docs/ASA5_ENTERPRISE_CONTROL_MAPPING.md)
+
+## Enterprise Control Mapping
+
+ASA 5 can support enterprise AI security and risk-management conversations by providing runtime evidence for monitoring, escalation, audit, and bounded response workflows.
+
+The public mapping document explains how ASA 5 relates to NIST AI RMF, CSA AI Controls Matrix, OWASP AISVS, SOC/SIEM workflows, telemetry requirements, and autonomous response boundaries.
+
+ASA 5 does not claim standalone compliance with these frameworks. It provides a runtime security evidence layer that can support enterprise control implementation and review.
+
+Read more:
+
+- [ASA 5 Enterprise Control Mapping](docs/ASA5_ENTERPRISE_CONTROL_MAPPING.md)
 
 ## Preview
 
@@ -353,6 +366,9 @@ This repository currently includes a public-safe set of architecture documents:
 
 - [ASA 5 Enterprise Deployment Principles](docs/ASA5_ENTERPRISE_DEPLOYMENT_PRINCIPLES.md)
   - public-safe deployment model for positioning ASA 5 as an external runtime security layer
+
+- [ASA 5 Enterprise Control Mapping](docs/ASA5_ENTERPRISE_CONTROL_MAPPING.md)
+  - public-safe mapping of ASA 5 to enterprise AI risk, security verification, SOC, and audit conversations
 
 ## Public Scope
 
