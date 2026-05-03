@@ -207,6 +207,31 @@ It is about giving operators and security owners actionable visibility into traj
 
 In high-autonomy environments, that same layer may also support autonomous response logic, with the operator shifted toward review, audit, and governance rather than direct moment-to-moment approval.
 
+## Enterprise Integration Surface
+
+ASA 5 is designed to integrate through structured runtime telemetry rather than internal model access.
+
+It does not require model weights, training data, internal activations, hidden reasoning traces, or direct control over model outputs.
+
+For enterprise or agentic runtime integration, ASA needs a stable external view of the trajectory:
+
+- runtime and session identity
+- ordered events
+- timestamps
+- event and actor/source type
+- task or policy frame
+- input and output summaries
+- tool/action metadata when available
+- correction, retry, handoff, or operator-intervention markers
+- risk metadata when available
+
+This allows ASA to analyze trajectory integrity while remaining outside the model loop and preserving platform boundaries.
+
+Read more:
+
+- [ASA 5 Runtime Telemetry Requirements](docs/ASA5_RUNTIME_TELEMETRY_REQUIREMENTS.md)
+- [ASA 5 Enterprise Scalability Principles](docs/ASA5_ENTERPRISE_SCALABILITY_PRINCIPLES.md)
+
 ## Preview
 
 ### Security Architecture
@@ -309,6 +334,9 @@ This repository currently includes a public-safe set of architecture documents:
 
 - [ASA 5 Enterprise Scalability Principles](docs/ASA5_ENTERPRISE_SCALABILITY_PRINCIPLES.md)
   - public-safe scaling principles for moving from local evaluation to enterprise runtime security deployment
+
+- [ASA 5 Runtime Telemetry Requirements](docs/ASA5_RUNTIME_TELEMETRY_REQUIREMENTS.md)
+  - public-safe telemetry requirements for integrating ASA 5 without requiring internal model access
 
 ## Public Scope
 
