@@ -1,4 +1,4 @@
-# ASA 5.3.1 - AI Security Control Layer
+# ASA 5.3.2 - AI Security Control Layer
 
 Enterprise-safe external runtime security for trajectory integrity in long-horizon AI systems.
 
@@ -136,6 +136,38 @@ In high-autonomy contexts, the operator may instead serve as:
 
 This keeps the security layer external in judgment while allowing the system to react fast enough when direct human timing is no longer realistic.
 
+## ASA 5.3.2 Update
+
+ASA 5.3.2 extends `ASA 5 Security Enterprise` into a higher-volume operator/security workflow surface.
+
+The current public demo state shows:
+
+- 500 monitored runtime sessions
+- 70 live incidents
+- 20 critical `incident-active` signals
+- 50 high-risk `pre-incident` signals
+- 20 critical incidents automatically dispatched by ASA
+- 47 high-risk incidents reviewed and routed by a human operator
+- 3 high-risk incidents still pending operator review
+
+The update adds:
+
+- a richer Security Overview for hybrid human/system response state
+- an `Auto Dispatch Time` metric for critical incidents handled by automatic routing
+- a dedicated `Trajectory Playback` view for reconstructing observable drift across a selected session
+- turn-level drift delta and momentum visualization
+- pinned evidence export for selected trajectory points
+- a critical-first Incident Center for immediate operator focus
+- expanded Escalation Queue and Auto Escalation views for manual and automatic security routing
+- Audit Review visibility for state, incident, and escalation activity
+- evidence export reports covering 500 sessions and 70 public-safe evidence records
+
+ASA 5.3.2 strengthens the public enterprise posture of ASA 5: it shows ASA not only as a detector, but as an operator-facing runtime security console with automatic critical routing, human high-risk review, forensic playback, and audit-ready evidence export.
+
+Read more:
+
+- [ASA 5.3.2 Release Notes](docs/ASA5_3_2_RELEASE_NOTES.md)
+
 ## ASA 5.3.1 Update
 
 ASA 5.3.1 extends `ASA 5 Security Enterprise` with a stronger enterprise operator overview.
@@ -208,7 +240,7 @@ It becomes a decision boundary for escalation and response.
 
 ## Operator Layer
 
-ASA 5.3.1 exposes an operator-facing security enterprise console rather than a research observatory.
+ASA 5.3.2 exposes an operator-facing security enterprise console rather than a research observatory.
 
 The operator layer should communicate:
 
@@ -286,22 +318,41 @@ Archive copy:
 
 #### Security Overview
 
-![ASA 5.3.1 Security Overview](docs/ASA5_3_1_Security_Overview.png)
+![ASA 5.3.2 Security Overview](docs/ASA5_3_2_Security_Overview.png)
 
 #### Runtime Detail
 
-![ASA 5.3.1 Runtime Detail](docs/ASA5_3_1_Runtime_Detail.png)
+![ASA 5.3.2 Runtime Detail](docs/ASA5_3_2_Runtime_Detail.png)
+
+#### Trajectory Playback
+
+Trajectory Playback reconstructs the externally observable runtime path for a selected session.
+It shows turn-level drift pressure, drift delta, state changes, selected-turn evidence, and public-safe pinned export controls.
+
+![ASA 5.3.2 Trajectory Playback](docs/ASA5_3_2_Trajectory_Playback.png)
+
+#### Incident Center
+
+The Incident Center gives operators a critical-first view of runtime security incidents, with filtering and search for incident-level review.
+
+![ASA 5.3.2 Incident Center](docs/ASA5_3_2_Incident_Center.png)
 
 #### Escalation Queue
 
-![ASA 5.3.1 Escalation Queue](docs/ASA5_3_1_Escalation_Queue.png)
+![ASA 5.3.2 Escalation Queue](docs/ASA5_3_2_Escalation_Queue.png)
 
 #### Auto Escalation
 
 The Auto Escalation view separates automatically dispatched critical incidents from the manual escalation queue.
 It is designed for higher-volume environments where the system may need to route a bounded security signal immediately while preserving operator review.
 
-![ASA 5.3.1 Auto Escalation](docs/ASA5_3_1_Auto_Escalation.png)
+![ASA 5.3.2 Auto Escalation](docs/ASA5_3_2_Auto_Escalation.png)
+
+#### Audit Review
+
+Audit Review provides traceable operational history for state, incident, escalation, and operator-routing activity.
+
+![ASA 5.3.2 Audit Review](docs/ASA5_3_2_Audit_Review.png)
 
 ### Trajectory Evidence Export (Implemented)
 
@@ -318,11 +369,11 @@ This turns runtime detection into an auditable review artifact that can be share
 
 #### Export Panel (Console)
 
-![ASA 5.3.1 Export Panel](docs/ASA5_3_1_Export.png)
+![ASA 5.3.2 Export Panel](docs/ASA5_3_2_Export.png)
 
 #### Export Report (Evidence Packet)
 
-![ASA 5.3.1 Export Report](docs/ASA5_3_1_Export_Report.png)
+![ASA 5.3.2 Export Report](docs/ASA5_3_2_Export_Report.png)
 
 ## Reading Guide
 
@@ -370,6 +421,9 @@ This repository currently includes a public-safe set of architecture documents:
 - [ASA 5 Enterprise Control Mapping](docs/ASA5_ENTERPRISE_CONTROL_MAPPING.md)
   - public-safe mapping of ASA 5 to enterprise AI risk, security verification, SOC, and audit conversations
 
+- [ASA 5.3.2 Release Notes](docs/ASA5_3_2_RELEASE_NOTES.md)
+  - public-safe summary of the 500-session enterprise console update, trajectory playback, hybrid response, and evidence export improvements
+
 ## Public Scope
 
 This public repository is the safe documentation layer for ASA 5.
@@ -394,7 +448,7 @@ This public layer is designed to be readable by:
 
 Status: production-ready, actively deployed.
 
-ASA 5.3.1 is currently running live on a corpus of 200+ real research dialogues.
+ASA 5.3.2 is currently running live on a 500-session runtime security demo corpus with 70 incident records.
 The ASA 5 Security Enterprise console is fully functional.
 Core engine and dashboard are separate modules communicating via API, allowing integration alongside any AI system without modifying it.
 
