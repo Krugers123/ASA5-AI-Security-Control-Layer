@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.db
+*.sqlite
+*.sqlite3
+storage/
+__pycache__/
+.venv/
+venv/

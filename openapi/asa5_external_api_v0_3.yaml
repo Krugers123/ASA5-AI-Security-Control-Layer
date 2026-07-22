@@ -1,0 +1,645 @@
+openapi: 3.1.0
+info:
+  title: ASA5 External Interface
+  version: 0.3.0
+  description: >
+    Partner-facing draft contract for ASA5 telemetry ingestion, state readout,
+    evidence export, and bounded response signaling. This specification does
+    not disclose internal ASA5 scoring logic, thresholds, or calibration.
+servers:
+  - url: http://127.0.0.1:8000
+    description: Local development server
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      summary: Health check
+      security: []
+      responses:
+        "200":
+          description: Service health status
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, service]
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  service:
+                    type: string
+  /v1/runtimes:
+    post:
+      summary: Register runtime
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeCreate"
+      responses:
+        "200":
+          description: Runtime created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  runtime_id:
+                    type: string
+                  status:
+                    type: string
+        "422":
+          $ref: "#/components/responses/ValidationError"
+    get:
+      summary: List runtimes
+      responses:
+        "200":
+          description: Runtime list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/runtimes/{runtime_id}/sessions:
+    post:
+      summary: Create session in runtime
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionCreate"
+      responses:
+        "200":
+          description: Session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                  status:
+                    type: string
+        "404":
+          $ref: "#/components/responses/NotFound"
+    get:
+      summary: List sessions in runtime
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+      responses:
+        "200":
+          description: Session list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/runtimes/{runtime_id}/sessions/{session_id}/events:
+    post:
+      summary: Ingest one canonical telemetry event
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+        - $ref: "#/components/parameters/SessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TelemetryEvent"
+      responses:
+        "200":
+          description: Current ASA5 session state after event ingestion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionState"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+    get:
+      summary: List session events
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+        - $ref: "#/components/parameters/SessionId"
+      responses:
+        "200":
+          description: Event list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/ingestion/events-batch:
+    post:
+      summary: Ingest a batch of canonical telemetry events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [items]
+              properties:
+                items:
+                  type: array
+                  minItems: 1
+                  items:
+                    allOf:
+                      - $ref: "#/components/schemas/TelemetryEvent"
+                      - type: object
+                        required: [runtime_id, session_id]
+                        properties:
+                          runtime_id:
+                            type: string
+                          session_id:
+                            type: string
+      responses:
+        "200":
+          description: Batch processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchIngestionResponse"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+  /v1/ingestion/dialog-batch:
+    post:
+      summary: Ingest turn-based dialogue sessions through the convenience adapter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DialogBatchRequest"
+      responses:
+        "200":
+          description: Dialog batch processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchIngestionResponse"
+  /v1/runtimes/{runtime_id}/sessions/{session_id}:
+    get:
+      summary: Get current ASA5 session state
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+        - $ref: "#/components/parameters/SessionId"
+      responses:
+        "200":
+          description: Current session state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionState"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /v1/runtimes/{runtime_id}/sessions/{session_id}/trajectory-snapshots:
+    get:
+      summary: List trajectory snapshots for a session
+      parameters:
+        - $ref: "#/components/parameters/RuntimeId"
+        - $ref: "#/components/parameters/SessionId"
+      responses:
+        "200":
+          description: Trajectory snapshots
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/incidents:
+    get:
+      summary: List incidents
+      responses:
+        "200":
+          description: Incident list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/escalations:
+    get:
+      summary: List escalations
+      responses:
+        "200":
+          description: Escalation list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/escalations/{escalation_id}/status:
+    post:
+      summary: Update escalation status
+      parameters:
+        - name: escalation_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                decision_note:
+                  type: string
+                downstream_target:
+                  type: string
+      responses:
+        "200":
+          description: Escalation updated
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /v1/audit:
+    get:
+      summary: List audit records
+      responses:
+        "200":
+          description: Audit record list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/asc/shadow-decisions:
+    get:
+      summary: List ASC shadow decisions
+      responses:
+        "200":
+          description: ASC shadow decision list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+  /v1/export/evidence:
+    post:
+      summary: Export public-safe evidence packet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                period:
+                  type: string
+                  enum: [day, week, month]
+                  default: month
+                format:
+                  type: string
+                  enum: [jsonl, html, pdf]
+                  default: jsonl
+      responses:
+        "200":
+          description: Base64 encoded evidence export
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, records, period, format, filename, mime_type, content_b64]
+                properties:
+                  status:
+                    type: string
+                  records:
+                    type: integer
+                  period:
+                    type: string
+                  format:
+                    type: string
+                  filename:
+                    type: string
+                  mime_type:
+                    type: string
+                  content_b64:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: Required for production integrations. Local development may run without auth.
+  parameters:
+    RuntimeId:
+      name: runtime_id
+      in: path
+      required: true
+      schema:
+        type: string
+    SessionId:
+      name: session_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Unknown runtime, session, incident, or escalation resource
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    RuntimeCreate:
+      type: object
+      required: [runtime_id]
+      properties:
+        runtime_id:
+          type: string
+        runtime_type:
+          type: string
+          default: agentic_runtime
+        owner_context:
+          type: string
+        policy_context:
+          type: string
+    SessionCreate:
+      type: object
+      required: [session_id]
+      properties:
+        session_id:
+          type: string
+    TelemetryEvent:
+      type: object
+      required: [event_id, event_type]
+      properties:
+        schema_version:
+          type: string
+          default: asa5.external.interface.v0.3
+        event_id:
+          type: string
+        event_type:
+          $ref: "#/components/schemas/EventType"
+        timestamp:
+          type: string
+          format: date-time
+        sequence_index:
+          type: integer
+          minimum: 1
+        actor_type:
+          $ref: "#/components/schemas/ActorType"
+        source_system:
+          type: string
+        result_status:
+          $ref: "#/components/schemas/ResultStatus"
+        source:
+          type: string
+          description: Legacy source field; actor_type is preferred for v0.3.
+        text:
+          type: string
+          description: Legacy raw text field. Prefer content summaries for partner integrations.
+        summary:
+          type: string
+        content:
+          type: object
+          properties:
+            input_summary:
+              type: string
+            output_summary:
+              type: string
+            raw_input_ref:
+              type: string
+            raw_output_ref:
+              type: string
+            raw_content_included:
+              type: boolean
+              default: false
+        task_frame:
+          type: object
+          properties:
+            task_id:
+              type: string
+            task_type:
+              type: string
+            intent_summary:
+              type: string
+            policy_context:
+              type: string
+            success_criteria:
+              type: string
+        tool:
+          type: object
+          additionalProperties: true
+        correction:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+    EventType:
+      type: string
+      enum:
+        - user_input
+        - system_instruction
+        - agent_output
+        - tool_call
+        - tool_result
+        - planner_step
+        - memory_update
+        - handoff
+        - correction
+        - operator_intervention
+        - policy_signal
+        - security_signal
+        - runtime_error
+        - session_snapshot
+        - dialog_turn
+        - turn
+        - step
+        - iteration
+        - signal
+    ActorType:
+      type: string
+      enum:
+        - user
+        - agent
+        - assistant
+        - system
+        - tool
+        - operator
+        - security_layer
+        - policy_engine
+        - orchestrator
+        - connector
+        - unknown
+    ResultStatus:
+      type: string
+      enum:
+        - started
+        - completed
+        - failed
+        - blocked
+        - retried
+        - corrected
+        - escalated
+        - cancelled
+        - unknown
+    SessionState:
+      type: object
+      required:
+        - session_id
+        - runtime_id
+        - state
+        - incident_class
+        - severity
+        - readiness_tier
+        - pre_incident
+        - trajectory_integrity_score
+      properties:
+        session_id:
+          type: string
+        runtime_id:
+          type: string
+        state:
+          type: string
+          enum: [stable, watch, elevated, pre_incident, incident_active]
+        incident_class:
+          type: string
+        severity:
+          type: string
+          enum: [info, low, medium, high, critical]
+        readiness_tier:
+          type: string
+          enum: [tier_1, tier_2, tier_3, tier_4, unrated]
+          description: Operational readiness band. This is an ordinal signal, not a calibrated probability.
+        pre_incident:
+          type: boolean
+        trajectory_integrity_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        operator_readout:
+          type: string
+        security_readout:
+          type: string
+        recommended_next_step:
+          type: string
+        flags:
+          type: array
+          items:
+            type: string
+        diagnostics:
+          type: object
+          additionalProperties: true
+    BatchIngestionResponse:
+      type: object
+      required: [status, processed_events, processed_sessions, session_states]
+      properties:
+        status:
+          type: string
+          enum: [processed]
+        processed_events:
+          type: integer
+        processed_sessions:
+          type: integer
+        session_states:
+          type: array
+          items:
+            $ref: "#/components/schemas/SessionState"
+    DialogBatchRequest:
+      type: object
+      required: [sessions]
+      properties:
+        sessions:
+          type: array
+          items:
+            type: object
+            required: [session_id, runtime_id, turns]
+            properties:
+              session_id:
+                type: string
+              runtime_id:
+                type: string
+              runtime_type:
+                type: string
+                default: agentic_runtime
+              owner_context:
+                type: string
+              policy_context:
+                type: string
+              user_intent:
+                type: string
+              constraints:
+                type: array
+                items:
+                  type: string
+              turns:
+                type: array
+                items:
+                  type: object
+                  required: [role, content]
+                  properties:
+                    role:
+                      type: string
+                    content:
+                      type: string
+              source_system:
+                type: string
+              metadata:
+                type: object
+                additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties: true
