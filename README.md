@@ -189,6 +189,7 @@ than outcome probabilities.
 - [OpenAPI 3.1 contract](openapi/asa5_external_api_v0_3.yaml)
 - [Golden Trace](docs/GOLDEN_TRACE.md)
 - [Operator Disagreement Log](docs/OPERATOR_DISAGREEMENT_LOG.md)
+- [Data Provenance and Use Policy](docs/DATA_PROVENANCE.md)
 - [Public Scope](docs/PUBLIC_SCOPE.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Public Screenshot Capture Guide](docs/SCREENSHOT_CAPTURE_GUIDE.md)
